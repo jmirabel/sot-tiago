@@ -21,7 +21,7 @@ from rospkg import RosPack
 
 _rospack = RosPack()
 
-class TiagoSteel (Tiago):
+class TiagoSchunk (Tiago):
     """
     This class instantiates LAAS TIAGO Robot
     """
@@ -35,7 +35,7 @@ class TiagoSteel (Tiago):
                    0.,  0.,                                          # Wheel (left, right)
                )
 
-    urdfPath = _rospack.get_path('tiago_data')+"/urdf/tiago_steel.urdf"
+    urdfPath = _rospack.get_path('tiago_data')+"/urdf/tiago_schunk.urdf"
     urdfDir = [_rospack.get_path('tiago_data')+"/../"]
 
     def __init__(self, name,

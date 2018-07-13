@@ -24,7 +24,6 @@ from dynamic_graph import plug
 
 from dynamic_graph.ros import RosRobotModel
 import pinocchio as se3
-from rospkg import RosPack
 
 # Internal helper tool.
 def matrixToTuple(M):
@@ -70,11 +69,6 @@ class Tiago(AbstractRobot):
                                      'footprint'   : 'base_footprint_joint',
                                      'gaze'        : 'head_2_joint',
                                      }
-
-        from rospkg import RosPack
-        rospack = RosPack()
-        urdfPath = rospack.get_path('tiago_description')+"/urdf/tiago_steel.urdf"
-        urdfDir = [rospack.get_path('tiago_description')+"/../"]
 
         # Create a wrapper to access the dynamic model provided through an urdf file.
         from pinocchio.robot_wrapper import RobotWrapper

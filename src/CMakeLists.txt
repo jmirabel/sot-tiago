@@ -57,6 +57,11 @@ PYTHON_INSTALL_ON_SITE("${PYTHON_MODULE}" "__init__.py" )
 PYTHON_INSTALL_ON_SITE("${PYTHON_MODULE}" "robot.py" "${PYTHON_SITELIB}")
 PYTHON_INSTALL_ON_SITE("${PYTHON_MODULE}" "prologue.py")
 
+# Install dynamic_graph.sot.tiago.schunk
+SET(PYTHON_MODULE dynamic_graph/sot/tiago/schunk)
+PYTHON_INSTALL_ON_SITE("${PYTHON_MODULE}" "__init__.py" )
+PYTHON_INSTALL_ON_SITE("${PYTHON_MODULE}" "robot.py" "${PYTHON_SITELIB}")
+PYTHON_INSTALL_ON_SITE("${PYTHON_MODULE}" "prologue.py")
 
 # Add the library to wrap the device of Tiago.
 MACRO(build_tiago_device)
@@ -93,13 +98,13 @@ ENDMACRO()
 build_tiago_device()
 
 # Add the library to wrap the controller of Tiago.
-MACRO(build_tiago_controller)
+MACRO(build_tiago_controller TYPE)
 
-  SET(CONTROLLER_NAME sot-tiago-steel-controller)
+  SET(CONTROLLER_NAME sot-tiago-${TYPE}-controller)
   ADD_LIBRARY(${CONTROLLER_NAME}
     SHARED
     sot-tiago-controller.cpp
-    sot-tiago-steel-controller.cpp
+    sot-tiago-${TYPE}-controller.cpp
   )
 
   # Link the dynamic library containing the SoT with its dependencies.
@@ -122,5 +127,6 @@ MACRO(build_tiago_controller)
 
 ENDMACRO()
 
-build_tiago_controller()
+build_tiago_controller("steel")
+build_tiago_controller("schunk")
 
